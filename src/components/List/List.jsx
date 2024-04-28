@@ -9,17 +9,25 @@ export const List = () => {
     const addTask = () => {
         let text = textRef.current.value;
         setTasks([
-            ...tasks, {
+            {
                 id: uuidv4(),
                 title: text
-            }
+            },
+            ...tasks,
         ]);
+        textRef.current.value = "";
     }
 
     const addTaskViaEnter = (e) => {
         if (e.key === "Enter") {
             addTask();
         }
+    }
+
+    const deleteTask = (id) => {
+        setTasks(
+            tasks.filter(x => x.id !== id)
+        )
     }
 
     return (
@@ -36,9 +44,9 @@ export const List = () => {
                     </div>
                     <div className="container mt-5">
                         <div className="row ul list-group">
-                            {tasks.map((t) => {
+                            {tasks.map((e) => {
                                 return (
-                                    <ListItem key={t.id} data={t} />
+                                    <ListItem key={e.id} data={e} onDelete={deleteTask} />
                                 );
                             })}
                         </div>
