@@ -1,10 +1,24 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ListItem } from "../ListItem/ListItem"
 import { v4 as uuidv4 } from 'uuid';
 
 export const List = () => {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(() => {
+        var storedTasks = localStorage.getItem("tasks");
+
+        if(!storedTasks) {
+            return [];
+        }
+
+        return JSON.parse(storedTasks);
+    });
+
     const textRef = useRef();
+
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
     const addTask = () => {
         let text = textRef.current.value;
