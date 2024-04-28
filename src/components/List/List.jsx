@@ -6,7 +6,7 @@ export const List = () => {
     const [tasks, setTasks] = useState(() => {
         var storedTasks = localStorage.getItem("tasks");
 
-        if(!storedTasks) {
+        if (!storedTasks) {
             return [];
         }
 
@@ -14,7 +14,6 @@ export const List = () => {
     });
 
     const textRef = useRef();
-
 
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));

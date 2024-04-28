@@ -1,13 +1,13 @@
 export const Footer = () => {
     return (
-        <div className="fixed-bottom mb-3">
+        <footer className="mb-3" style={{ "height": "50px", "flexShrink": "0" }}>
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-3 text-center">
-                        All rights reserved 
+                        All rights reserved
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
